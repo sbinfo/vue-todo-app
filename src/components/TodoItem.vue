@@ -2,8 +2,13 @@
     <li class="todo-item">
         <span>
             <input type="checkbox">
-            <strong>{{ todo.title }}</strong>
+            <input type="text" readonly 
+                class="todo-text" 
+                v-bind:value="todo.title"
+                @dblclick="editTodoText"
+            >
         </span>
+            
         <div class="buttons">
             <button class="priority-todo">!</button>
             <button class="delete-todo">&times;</button>
@@ -17,6 +22,12 @@ export default {
         todo: {
             type: Object,
             required: true
+        }
+    },
+    methods: {
+        editTodoText: function(e) {
+            let elem = e.target;
+            elem.removeAttribute("readonly")
         }
     }
 }
@@ -32,8 +43,15 @@ li.todo-item {
     padding: 12px 8px;
 }
 
-li.todo-item strong {
+li.todo-item .todo-text {
+    font-size: 1.1rem;
     margin-left: 10px;
+    border: none;
+}
+li.todo-item .todo-text:focus,
+li.todo-item .todo-text:active {
+    border: none;
+    outline: none;
 }
 li.todo-item .buttons button {
     color: #fff;
