@@ -1,5 +1,5 @@
 <template>
-    <ul>
+    <ul class="todo">
         <TodoItem
             v-for="todo in todos"
             :key="todo.id"
@@ -16,3 +16,12 @@ export default {
     components: { TodoItem }
 }
 </script>
+
+<style>
+    ul.todo {
+        list-style: none;
+        text-align: initial;
+        margin: 0;
+        padding: 0;
+    }
+</style>
