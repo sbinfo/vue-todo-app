@@ -36,6 +36,9 @@
     border: none;
     outline: none;
     cursor: pointer;
+    margin: 0 5px 0 5px;
+    border: 1px solid transparent;
+    padding: 2px 8px;
 }
 .toggle-buttons .active {
     border: 1px solid #7373736b;
@@ -47,6 +50,11 @@
 }
 .clear-all-button span:hover{
     text-decoration: underline;
+}
+
+.toggle-buttons button:not(.active):hover {
+    border: 1px solid #e2a8a880;
+    border-radius: 5px;
 }
 
 </style>

@@ -49,12 +49,12 @@ body {
   color: #2c3e50;
 }
 #app {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Quicksand",  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   margin-top: 60px;
-  max-width: 500px;
+  max-width: 550px;
   margin: 0 auto;
 }
 #app h1 {
@@ -70,7 +70,7 @@ body {
       margin-top: 50px;
     font-size: 12px;
     font-weight: bold;
-    color: #b7b7b7;
+    color: #cecccc
 }
 .footer a {
   color: #b7b7b7; 

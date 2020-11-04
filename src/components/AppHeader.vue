@@ -10,15 +10,18 @@
     border-bottom: 1px solid #ccc;
     padding: 12px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
  }
  .text-form {
-    width: 449px;
+    width: 100%;
     border: none;
     font-size: 1.1rem;
     margin-left: 10px;;
  }
  .select-all {
      margin: 0;
+     position: relative;
  }
  input.text-form:focus {
     outline: none;
