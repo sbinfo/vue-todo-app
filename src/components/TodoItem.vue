@@ -1,9 +1,12 @@
 <template>
     <li class="todo-item">      
-        <span>
-            <button class="btn-checkbox">
+        <span v-bind:class="{done: todo.completed}">
+            <button class="btn-checkbox"
+                v-on:click="todo.completed = !todo.completed"
+            >
                 <font icon="check" />
             </button>
+
             <input type="text" readonly 
                 class="todo-text" 
                 v-bind:value="todo.title"
@@ -34,12 +37,19 @@ export default {
         editTodoText: function(e) {
             let elem = e.target;
             elem.removeAttribute("readonly")
+        },
+        selectItem: function() {
+
         }
     }
 }
 </script>
 
 <style>
+.done input {
+    text-decoration: line-through;
+    color: #bebebe;
+}
 li.todo-item {
     display: flex;
     justify-content: space-between;
@@ -62,11 +72,17 @@ li.todo-item .btn-checkbox {
     font-size: 13px;
     cursor: pointer;
 }
-li.todo-item .btn-checkbox-selected {
+
+li.todo-item .done .btn-checkbox {
     border: 1px solid green;
     background: #fff;
     color: green;
 }
+/* li.todo-item .btn-checkbox-selected {
+    border: 1px solid green;
+    background: #fff;
+    color: green;
+} */
 
 li.todo-item .todo-text {
     font-size: 1.1rem;
