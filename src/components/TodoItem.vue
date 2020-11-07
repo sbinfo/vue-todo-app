@@ -93,8 +93,8 @@ li.todo-item button.delete-todo {
     padding: 0 5px;
 }
 li.todo-item button.priority-todo {
-        background: #5d96c6;
-    border: 1px solid #5d96c6;
+    background: #5dc682;
+    border: 1px solid #5dc682;
     padding: 0px 8px;
 }
 </style>
