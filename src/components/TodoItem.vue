@@ -1,7 +1,9 @@
 <template>
-    <li class="todo-item">
+    <li class="todo-item">      
         <span>
-            <input type="checkbox">
+            <button class="btn-checkbox">
+                <font icon="check" />
+            </button>
             <input type="text" readonly 
                 class="todo-text" 
                 v-bind:value="todo.title"
@@ -10,8 +12,12 @@
         </span>
             
         <div class="buttons">
-            <button class="priority-todo">!</button>
-            <button class="delete-todo">&times;</button>
+            <button class="priority-todo">
+                <font icon="info" />
+            </button>
+            <button class="delete-todo">
+                <font icon="times" />
+            </button>
         </div>
     </li>
 </template>
@@ -42,10 +48,29 @@ li.todo-item {
     border-bottom: 1px solid #cccc;
     padding: 12px 8px;
 }
+li.todo-item button:focus,
+li.todo-item button:active {
+    outline: none;
+}
+li.todo-item .btn-checkbox {
+    border: 1px solid #e1e1e1;
+    background: #fff;
+    color: transparent;
+    border-radius: 50%;
+    width: 27px;
+    height: 27px;
+    font-size: 13px;
+    cursor: pointer;
+}
+li.todo-item .btn-checkbox-selected {
+    border: 1px solid green;
+    background: #fff;
+    color: green;
+}
 
 li.todo-item .todo-text {
     font-size: 1.1rem;
-    margin-left: 10px;
+    margin-left: 15px;
     border: none;
 }
 li.todo-item .todo-text:focus,
@@ -55,10 +80,12 @@ li.todo-item .todo-text:active {
 }
 li.todo-item .buttons button {
     color: #fff;
-    border-radius: 5px;
-    font-size: 20px;
-    margin-right: 8px;
+    border-radius: 50%;
+    font-size: 13px;
+    margin-right: 5px;
     cursor: pointer;
+    width: 26px;
+    height: 26px;
 }
 li.todo-item button.delete-todo {
     background: #c65d5d;
