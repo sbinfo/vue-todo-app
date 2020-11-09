@@ -11,7 +11,8 @@
         @remove-todo="removeTodo"
       />
 
-      <AppFooter 
+      <AppFooter
+        v-bind:style="{display: !Object.keys(this.todos).length ? 'none': ''}" 
         v-bind:completedCount="completedCount"
         v-bind:clearAll="clearAll"
         @clear-completed-todos="clearCompletedTodos"
@@ -50,7 +51,6 @@ export default {
     },
     clearCompletedTodos() {
       this.todos = this.todos.filter(item => !item.completed);
-      // console.log(test);
     },
     addTodo(newTodo) {
       this.todos.push(newTodo);
@@ -58,16 +58,22 @@ export default {
     // с помошью флага можно переключится . есть два режима у функции
     // 1 считает оставшиееся задачи (left) а другой считает сделанные задачи (надо передать что то кроме left)
     completedCount(flag = 'left') {
+
       let count = 0;
       this.todos.forEach(item => {
+        
         if(flag === 'left') {
+
           if(!item.completed) {
             count++;
           }
+
         } else {
+
           if(item.completed) {
             count++;
           }
+
         }    
       });
 
