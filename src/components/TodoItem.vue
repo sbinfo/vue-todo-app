@@ -131,8 +131,8 @@ li.todo-item .buttons button {
     font-size: 13px;
     margin-right: 5px;
     cursor: pointer;
-    width: 26px;
-    height: 26px;
+    width: 27px;
+    height: 27px;
 }
 li.todo-item button.delete-todo {
     background: #c65d5d;

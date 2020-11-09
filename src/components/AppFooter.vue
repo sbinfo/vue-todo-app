@@ -12,7 +12,12 @@
         </div>
 
         <div class="clear-all-button">
-          <span>Clear completed</span>
+          <!-- если не выбран ни один елемент то эту кнопку скрываем -->
+          <span 
+            v-on:click="$emit('clear-completed-todos')"
+            v-bind:style="{display: completedCount('done') == 0  ? 'none' : ''}">
+            Clear completed {{ completedCount('done') }} 
+          </span>
         </div>
 
       </div>
@@ -31,6 +36,7 @@ export default {
   justify-content: space-between;
   padding: 10px 15px;
 }
+
 .app-footer button, .app-footer span {
     color: #737373;
     font-weight: bold;
@@ -61,6 +67,19 @@ export default {
 .toggle-buttons button:not(.active):hover {
     border: 1px solid #e2a8a880;
     border-radius: 5px;
+}
+
+.app-footer .toggle-buttons {
+  width: 50%;
+}
+
+.app-footer .info-block {
+  text-align: left;
+}
+
+.app-footer .clear-all-button,
+.app-footer .info-block {
+  width: 25%;
 }
 
 </style>

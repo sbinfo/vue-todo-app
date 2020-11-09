@@ -13,6 +13,8 @@
 
       <AppFooter 
         v-bind:completedCount="completedCount"
+        v-bind:clearAll="clearAll"
+        @clear-completed-todos="clearCompletedTodos"
       />
     </div>
 
@@ -39,25 +41,38 @@ export default {
         { id: 2, title: "Make Coffee", completed: true },
         { id: 3, title: "Create Awesome Apps", completed: false },
       ],
+      clearAll: false,
     };
   },
   methods: {
     removeTodo(id) {
       this.todos = this.todos.filter(item => item.id !== id);
     },
+    clearCompletedTodos() {
+      this.todos = this.todos.filter(item => !item.completed);
+      // console.log(test);
+    },
     addTodo(newTodo) {
       this.todos.push(newTodo);
     },
-    completedCount() {
+    // с помошью флага можно переключится . есть два режима у функции
+    // 1 считает оставшиееся задачи (left) а другой считает сделанные задачи (надо передать что то кроме left)
+    completedCount(flag = 'left') {
       let count = 0;
       this.todos.forEach(item => {
-        if(!item.completed) {
-          count++;
-        }
+        if(flag === 'left') {
+          if(!item.completed) {
+            count++;
+          }
+        } else {
+          if(item.completed) {
+            count++;
+          }
+        }    
       });
 
       return count;
-    }
+    },
   },
   components: {
     Todo, AppFooter, AddTodo
