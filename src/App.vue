@@ -4,7 +4,7 @@
     <h1>todos</h1>
 
     <div class="app-body">
-      <AppHeader />
+      <AppHeader @add-todo="addTodo"/>
 
       <Todo 
         v-bind:todos="todos"
@@ -42,6 +42,9 @@ export default {
   methods: {
     removeTodo(id) {
       this.todos = this.todos.filter(item => item.id !== id);
+    },
+    addTodo(newTodo) {
+      this.todos.push(newTodo);
     }
   },
   components: {

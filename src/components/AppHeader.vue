@@ -1,13 +1,39 @@
 <template>
-    <div class="app-header">
+    <form class="app-header" @submit.prevent="onSubmit">
         <span class="select-all">
             <font icon="check" />
         </span>
-        <input type="text" placeholder="What needs to be done?" class="text-form">    
-    </div>   
+        <input type="text" placeholder="What needs to be done?" class="text-form" v-model="title">    
+    </form>   
 </template>
 
-<style scoped>
+<script>
+export default {
+    data() {
+        return {
+            title: ''
+        }
+    },
+    methods: {
+        onSubmit() {
+            console.log('Submit', this.title);
+            if(this.title.trim()) {
+                const newTodo = {
+                    id: Date.now(),
+                    title: this.title,
+                    completed: false
+                }
+
+                this.$emit('add-todo', newTodo);
+                this.title = '';
+            }
+        }
+    }
+}
+</script>
+
+
+<style>
  .app-header {
     border-bottom: 1px solid #ccc;
     padding: 20px 15px;
