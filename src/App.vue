@@ -6,7 +6,10 @@
     <div class="app-body">
       <AppHeader />
 
-      <Todo v-bind:todos="todos" />
+      <Todo 
+        v-bind:todos="todos"
+        @remove-todo="removeTodo"
+      />
 
       <AppFooter />
     </div>
@@ -35,6 +38,11 @@ export default {
         { id: 3, title: "Create Awesome Apps", completed: false },
       ],
     };
+  },
+  methods: {
+    removeTodo(id) {
+      this.todos = this.todos.filter(item => item.id !== id);
+    }
   },
   components: {
     Todo, AppFooter, AppHeader
