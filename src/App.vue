@@ -4,7 +4,11 @@
     <h1>todos</h1>
 
     <div class="app-body">
-      <AddTodo @add-todo="addTodo"/>
+      <AddTodo 
+        @add-todo="addTodo"
+        @select-all="selectAll"
+        v-bind:isSelectedAll="isSelectedAll"
+      />
 
       <Todo 
         v-bind:todos="todos"
@@ -46,6 +50,25 @@ export default {
     };
   },
   methods: {
+    selectAll() {
+      // снрачало получаем сделаанные задачи
+      let items = this.todos.filter(item => item.completed);
+      let items_count = Object.keys(items).length; // получаем их количество
+
+      // если большо или равно нулю то устанавливаем всем задачам completed: true
+      if(items_count >= 0) {
+        for(let item in this.todos) {
+          this.todos[item].completed = true;
+        }
+      }
+      // если количество выполненных задач равно количество всех елементов в списке то 
+      // всем елементам устанавливаем обратное значение completed: false
+      if(items_count === Object.keys(this.todos).length) {     
+        for(let item in this.todos) {
+          this.todos[item].completed = false;
+        }
+      }
+    },
     removeTodo(id) {
       this.todos = this.todos.filter(item => item.id !== id);
     },
@@ -79,6 +102,13 @@ export default {
 
       return count;
     },
+    isSelectedAll() {
+      if(Object.keys(this.todos).length != 0 && this.completedCount('done') === Object.keys(this.todos).length) {
+        return '#5dc682';
+      }
+
+      return '';
+    }
   },
   components: {
     Todo, AppFooter, AddTodo

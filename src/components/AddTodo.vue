@@ -1,6 +1,8 @@
 <template>
     <form class="app-header" @submit.prevent="onSubmit">
-        <span class="select-all">
+        <span class="select-all" 
+            v-bind:style="{color: isSelectedAll()}"
+            v-on:click="$emit('select-all')">
             <font icon="check" />
         </span>
         <input type="text" placeholder="What needs to be done?" class="text-form" v-model="title">    
@@ -9,6 +11,7 @@
 
 <script>
 export default {
+    props: ['isSelectedAll'],
     data() {
         return {
             title: ''
@@ -16,7 +19,6 @@ export default {
     },
     methods: {
         onSubmit() {
-            console.log('Submit', this.title);
             if(this.title.trim()) {
                 const newTodo = {
                     id: Date.now(),
