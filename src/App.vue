@@ -4,14 +4,16 @@
     <h1>todos</h1>
 
     <div class="app-body">
-      <AppHeader @add-todo="addTodo"/>
+      <AddTodo @add-todo="addTodo"/>
 
       <Todo 
         v-bind:todos="todos"
         @remove-todo="removeTodo"
       />
 
-      <AppFooter />
+      <AppFooter 
+        v-bind:completedCount="completedCount"
+      />
     </div>
 
     <div class="footer">
@@ -26,7 +28,7 @@
 <script>
 import Todo from "./components/Todo";
 import AppFooter from './components/AppFooter';
-import AppHeader from './components/AppHeader';
+import AddTodo from './components/AddTodo';
 
 export default {
   name: "App",
@@ -45,10 +47,20 @@ export default {
     },
     addTodo(newTodo) {
       this.todos.push(newTodo);
+    },
+    completedCount() {
+      let count = 0;
+      this.todos.forEach(item => {
+        if(!item.completed) {
+          count++;
+        }
+      });
+
+      return count;
     }
   },
   components: {
-    Todo, AppFooter, AppHeader
+    Todo, AppFooter, AddTodo
   },
 };
 </script>

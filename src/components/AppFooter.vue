@@ -1,8 +1,8 @@
 <template>
     <div class="app-footer">
 
-        <div class="info-block">
-          <span>1 item left</span>
+        <div class="info-block" >
+          <span>{{ completedCount() }} item left</span>
         </div>
 
         <div class="toggle-buttons">
@@ -17,6 +17,12 @@
 
       </div>
 </template>
+
+<script>
+export default {
+  props: ['completedCount']
+}
+</script>
 
 
 <style>
