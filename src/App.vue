@@ -44,9 +44,6 @@ export default {
   data: function () {
     return {
       todos: [
-        { id: 1, title: "Learn Vue.js", completed: false },
-        { id: 2, title: "Make Coffee", completed: true },
-        { id: 3, title: "Create Awesome Apps", completed: false },
       ],
       clearAll: false,
       filter: 'all' // filter для показа елементов по выбору  (all, active, completed)

@@ -17,9 +17,9 @@
         </span>
             
         <div class="buttons">
-            <button class="priority-todo">
+            <!-- <button class="priority-todo">
                 <font icon="info" />
-            </button>
+            </button> -->
             <button class="delete-todo" v-on:click="$emit('remove-todo', todo.id)">
                 <font icon="times" />
             </button>
