@@ -63,8 +63,7 @@ export default {
 
             let liElem = findAncestor(elem,'todo-item');
             liElem.classList.add('text-focus');
-        },
-        
+        }     
     }
 }
 </script>

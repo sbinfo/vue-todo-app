@@ -11,7 +11,7 @@
       />
 
       <Todo 
-        v-bind:todos="todos"
+        v-bind:todos="changeFilter(filter)"
         @remove-todo="removeTodo"
       />
 
@@ -19,7 +19,9 @@
         v-bind:style="{display: !Object.keys(this.todos).length ? 'none': ''}" 
         v-bind:completedCount="completedCount"
         v-bind:clearAll="clearAll"
+        v-bind:filter="filter"
         @clear-completed-todos="clearCompletedTodos"
+        @change-filter="changeFilter"
       />
     </div>
 
@@ -47,6 +49,7 @@ export default {
         { id: 3, title: "Create Awesome Apps", completed: false },
       ],
       clearAll: false,
+      filter: 'all' // filter для показа елементов по выбору  (all, active, completed)
     };
   },
   methods: {
@@ -108,6 +111,18 @@ export default {
       }
 
       return '';
+    },
+    changeFilter(text) {
+      this.filter = text;
+
+      if (text === 'active') {
+        return this.todos.filter(item => !item.completed)
+      } 
+      else if (text === 'completed') {
+        return this.todos.filter(item => item.completed);
+      }
+
+      return this.todos;
     }
   },
   components: {

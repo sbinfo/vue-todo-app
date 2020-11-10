@@ -6,9 +6,18 @@
         </div>
 
         <div class="toggle-buttons">
-          <button class="active">All</button>
-          <button>Active</button>
-          <button>Completed</button>
+          <button 
+            v-bind:class="{active: filter == 'all'}"
+            v-on:click="changeFilter"
+          >All</button>
+          <button 
+            v-bind:class="{active: filter === 'active'}"
+            v-on:click="changeFilter"
+          >Active</button>
+          <button 
+            v-bind:class="{active: filter === 'completed'}"
+            v-on:click="changeFilter"
+          >Completed</button>
         </div>
 
         <div class="clear-all-button">
@@ -25,7 +34,13 @@
 
 <script>
 export default {
-  props: ['completedCount']
+  props: ['completedCount', 'filter'],
+  methods: {
+    changeFilter(e) {
+      let filterText = e.target.innerText.toLowerCase();
+      this.$emit('change-filter', filterText);
+    }
+  }
 }
 </script>
 
