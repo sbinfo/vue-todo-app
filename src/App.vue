@@ -13,6 +13,7 @@
       <Todo 
         v-bind:todos="changeFilter(filter)"
         @remove-todo="removeTodo"
+        @change-todo="changeTodo"
       />
 
       <AppFooter
@@ -77,6 +78,25 @@ export default {
     },
     addTodo(newTodo) {
       this.todos.push(newTodo);
+    },
+    changeTodo({title, id, completed}) {
+
+      const index = this.todos.findIndex((el) => el.id === id);
+
+      const changedItem = {
+        id: id,
+        title: title,
+        completed: completed
+      }
+
+      const newTodos = [
+        ...this.todos.slice(0, index),
+        changedItem,
+        ...this.todos.slice(index + 1)
+      ]     
+
+      this.todos = newTodos;
+
     },
     // с помошью флага можно переключится . есть два режима у функции
     // 1 считает оставшиееся задачи (left) а другой считает сделанные задачи (надо передать что то кроме left)

@@ -5,6 +5,7 @@
             :key="todo.id"
             v-bind:todo="todo"
             v-on:remove-todo="removeTodo"
+            v-on:change-todo="changeTodo"
         />   
     </ul> 
 </template>
@@ -17,6 +18,9 @@ export default {
     methods: {
         removeTodo(id) {
             this.$emit('remove-todo', id);
+        },  
+        changeTodo(todo) {
+            this.$emit('change-todo', todo);
         }
     },
     components: { TodoItem }
